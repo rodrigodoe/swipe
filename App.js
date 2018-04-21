@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {Card, Button } from 'react-native-elements';
+import { Card, Button } from 'react-native-elements';
 
 
 
@@ -18,31 +18,46 @@ const DATA = [
 ];
 
 class App extends React.Component {
-  renderCard(item){
+  renderCard(item) {
     return (
       <Card
-        key={item.id} 
+        key={item.id}
         title={item.text}
-        image={{uri: item.uri }}
+        image={{ uri: item.uri }}
       >
-      <Text style={{ marginBottom: 10 }}>
-        I can customize the Card further
+        <Text style={{ marginBottom: 10 }}>
+          Você pode customizar o card
       </Text>
-      <Button
-        icon={{name: 'code'}}
-        backgroundColor="#03A9F4"
-        title="View Now"
-      />
+        <Button
+          icon={{ name: 'code' }}
+          backgroundColor="#03A9F4"
+          title="Ver Agora!"
+        />
       </Card>
     )
+  }
+
+  renderNoMoreCards() {
+    return (
+      <Card title="Completado!" >
+        <Text style={{ marginBottom: 10 }}>
+          Não Há Mais cartas =(
+        </Text>
+        <Button
+          backgroundColor="#03A9F4"
+          title="Obtenha Mais!"
+        />
+      </Card>
+    );
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Deck 
+        <Deck
           data={DATA}
           renderCard={this.renderCard}
+          renderNoMoreCards={this.renderNoMoreCards}
         />
       </View>
     );
@@ -53,6 +68,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    marginTop: 20,
   },
 });
 
